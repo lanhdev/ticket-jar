@@ -1,9 +1,9 @@
-# Homework 3 - *Name of App*
+# Homework 3 - *CoderTicket*
 
-**Name of your app** is a Ruby on Rails application that allows users to create and buy tickets to cool events.
+**CoderTicket** is a Ruby on Rails application that allows users to create and buy tickets to cool events.
 
-- Submitted by: **Your Name Here**
-- Time spent: **X** hours
+- Submitted by: **Lanh Hoang**
+- Time spent: **** hours
 - URL: **Insert your Heroku URL here**
 - SimpleCov Test Coverage: [coverage/index.html](coverage/index.html)
 
@@ -73,7 +73,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Lanh Hoang]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
