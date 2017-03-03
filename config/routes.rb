@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :tickets
   end
+  delete 'sign_out' => 'sessions#destroy'
   get 'upcoming' => 'events#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
