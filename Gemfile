@@ -35,7 +35,7 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'font-kit-rails', '~> 1.2.0'
-gem 'rails-assets-semantic', source: 'https://rails-assets.org'
+# gem 'rails-assets-semantic', source: 'https://rails-assets.org'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -47,9 +47,14 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+  gem 'factory_girl_rails'
   gem 'simplecov', '~> 0.12.0', require: false
   gem 'guard-rspec', require: false
   gem 'table_print'
+end
+
+group :test do
+  gem 'capybara'
 end
 
 group :development do
