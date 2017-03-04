@@ -9,6 +9,10 @@ class Event < ActiveRecord::Base
   validates_presence_of :extended_html_description, :venue, :category, :starts_at
   validates_uniqueness_of :name, uniqueness: {scope: [:venue, :starts_at]}
 
+  def total_quantity
+    ticket_types.sum { |t| t.max_quantity }
+  end
+
   def have_enough_ticket_types?
     ticket_types.count >= 1
   end

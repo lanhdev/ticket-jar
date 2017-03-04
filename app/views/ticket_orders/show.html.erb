@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Your booking detail information</span></h1>
+  <div class="row">
+    <div class="col-sm-2">
+      <p>Customer:</p>
+      <p>Address:</p>
+      <p>Phone:</p>
+      <p>Time booking:</p>
+    </div>
+    <div class="col-sm-4">
+      <p><%= @ticket_order.name %></p>
+      <p><%= @ticket_order.address %></p>
+      <p><%= @ticket_order.phone %></p>
+      <p><%= @ticket_order.created_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @ticket_order.ticket_type.name %></td>
+          <td><%= number_to_currency(@ticket_order.ticket_type.price, precision: 0, unit: "VND", delimiter: ",", format: "%n %u") %></td>
+          <td><%= @ticket_order.quantity %></td>
+          <td><%= number_to_currency(@ticket_order.ticket_type.price * @ticket_order.quantity, precision: 0, unit: "VND", delimiter: ",", format: "%n %u") %></td>
+        </tr>
+        <tr>
+          <td>Total cost</td>
+          <td></td>
+          <td></td>
+          <td><%= number_to_currency(@ticket_order.total_price, precision: 0, unit: "VND", delimiter: ",", format: "%n %u") %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

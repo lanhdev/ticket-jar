@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post 'publish'
     end
     resources :tickets
+    resources :ticket_orders, only: [:new, :create, :show]
   end
   delete 'sign_out' => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
