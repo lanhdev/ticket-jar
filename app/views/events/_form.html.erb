@@ -1,0 +1,37 @@
+<%= form_for event do |f| %>
+  <% if event.errors.any?%>
+    <%= event.errors.full_messages.to_sentence %>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %>
+    <%= f.select :category_id, Category.all.map { |c| [c.name, c.id] }, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :venue_id %>
+    <%= f.fields_for :venue do |venue_form| %>
+      <%= venue_form.text_field :name, placeholder: 'Venue Name', class: 'form-control' %>
+      <%= venue_form.text_field :full_address, placeholder: 'Address', class: 'form-control' %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :hero_image_url, 'Image' %>
+    <%= f.text_field :hero_image_url, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :extended_html_description, 'Description' %>
+    <%= f.text_area :extended_html_description, rows: 10 ,placeholder: 'Description', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :starts_at, 'Start' %>
+    <%= f.datetime_select :starts_at, order: [:month, :day, :year] ,class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :ends_at, 'End' %>
+    <%= f.datetime_select :ends_at, order: [:month, :day, :year], class: 'form-control' %>
+  </div>
+  <%= f.submit "Create", :disable_with => 'Creating...' %>
+<% end %>

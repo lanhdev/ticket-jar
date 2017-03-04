@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update]
+
   def index
     if params[:search]
       @events = Event.search(params[:search])
@@ -7,8 +9,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def mine
+    @events_id = current_user.events.all.select(:id)
+    @events = Event.where(id: @events_id)
+  end
+
   def show
+  end
+
+  def publish
     @event = Event.find(params[:id])
+    @event.published_at = Time.now
+    @event.save!
   end
 
   def new
@@ -16,6 +28,9 @@ class EventsController < ApplicationController
     # build_venue method exists because belongs_to :venue has been defined.
     # Refer: http://guides.rubyonrails.org/association_basics.html#belongs-to-association-reference
     @event.build_venue 
+  end
+
+  def edit
   end
 
   def create
@@ -28,13 +43,15 @@ class EventsController < ApplicationController
     end
   end
 
-  def publish
-    @event = Event.find(params[:id])
-    @event.published_at = Time.now
-    @event.save!
+  def update
+    @event.update(event_params)
   end
 
   private
+    def set_event
+      @event = Event.find(params[:id])
+    end
+
     def event_params
       params.require(:event).permit!
     end
