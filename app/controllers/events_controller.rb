@@ -28,6 +28,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def publish
+    @event = Event.find(params[:id])
+    @event.published_at = Time.now
+    @event.save!
+  end
+
   private
     def event_params
       params.require(:event).permit!

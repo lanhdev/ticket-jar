@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :events do
     resources :tickets
+    post 'published', on: :member
   end
   delete 'sign_out' => 'sessions#destroy'
   get 'upcoming' => 'events#index'
