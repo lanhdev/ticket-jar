@@ -20,10 +20,13 @@
           <div class="clearfix"></div>
         <% end %>
         <%= link_to event_tickets_path(@event) do %>
-          <button class='btn btn-lg btn-block btn-danger'> BOOK NOW </button>
+          <button class='btn btn-lg btn-block btn-danger'>BOOK NOW</button>
         <% end %>
-        <%= link_to edit_event_path(id: @event.id) do %>
-          <button class="btn btn-lg btn-block btn-primary">Edit</button>
+        <% if current_user && current_user.id == @event.user_id %>
+          <%= link_to edit_event_path(id: @event.id) do %>
+            <button class="btn btn-lg btn-block btn-info">Edit</button>
+          <% end %>
+          <a href="<%= publish_event_path(id: @event.id) %>" data-method='post'><button class="btn btn-lg btn-primary btn-block">Publish</button></a>
         <% end %>
       </div>
     </div>

@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   resources :events do
     collection do
       get 'mine'
+      get 'upcoming' => 'events#index'
     end
     member do
-      post 'published'
+      post 'publish'
     end
     resources :tickets
   end
-  get 'events/upcoming' => 'events#upcoming'
   delete 'sign_out' => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

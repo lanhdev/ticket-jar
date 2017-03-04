@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update]
+  before_action :set_event, only: [:show, :publish, :edit, :update]
 
   def index
     if params[:search]
       @events = Event.search(params[:search])
     else
-      @events = Event.all
+      @events = Event.all.published.upcoming
     end
   end
 
@@ -18,9 +18,14 @@ class EventsController < ApplicationController
   end
 
   def publish
-    @event = Event.find(params[:id])
-    @event.published_at = Time.now
-    @event.save!
+    if @event.have_enough_ticket_types?
+      @event.published_at = Time.now
+      @event.save!
+      redirect_to root_path, flash: { success: 'Event has been published' }
+    else
+      flash[:error] = 'Event must have at least 1 ticket types'
+      redirect_to event_path
+    end
   end
 
   def new
@@ -36,7 +41,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
-      redirect_to root_path, flash: {success: 'Event created'}
+      redirect_to root_path, flash: {success: 'Event was created'}
     else
       flash[:error] = 'Error happened when creating new event'
       render 'new'
@@ -45,6 +50,7 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
+    redirect_to event_path, flash: {success: 'Event was successfully updated'}
   end
 
   private
@@ -53,6 +59,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit!
+      params.require(:event).permit! # permit all field
     end
 end

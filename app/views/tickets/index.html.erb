@@ -21,7 +21,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-11 col-md-offset-1">  
+    <div class="col-md-12 col-md-offset-1">  
       <table class="table">
         <th> Ticket Type </th>
         <th> Unit Price </th>
@@ -39,24 +39,24 @@
           </tr>
         <% end %> 
       </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <% if current_user && current_user.id == @event.user_id %>
-      <%= form_tag nil, method: 'get' do %>
-        <%= hidden_field_tag :event_id, params[:event_id] %>
-        <div class="form-inline">
-          <%= text_field_tag :name, params[:name], placeholder: 'Name', class: 'form-control' %>
-          <%= text_field_tag :price, params[:price], placeholder: 'Price', class: 'form-control' %>
-          <%= text_field_tag :max_quantity, params[:max_quantity], placeholder: 'Quantity', class: 'form-control' %>
-          <%= submit_tag 'Add', class: 'btn btn-warning' %>
-        </div>
+      <% if current_user && current_user.id == @event.user_id %>
+        <%= form_tag nil, method: 'get' do %>
+          <%= hidden_field_tag :event_id, params[:event_id] %>
+          <div class="form-inline">
+            <%= text_field_tag :name, params[:name], placeholder: 'Name', class: 'form-control' %>
+            <%= text_field_tag :price, params[:price], placeholder: 'Price', class: 'form-control' %>
+            <%= text_field_tag :max_quantity, params[:max_quantity], placeholder: 'Quantity', class: 'form-control' %>
+            <%= submit_tag 'Add', class: 'btn btn-warning' %>
+          </div>
+        <% end %>
+      <% else %>
+      <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-success btn-lg btn-block">Buy</button>
+      </div>
       <% end %>
-    <% else %>
-    <div class="col-md-2 col-md-offset-5">
-      <button class="btn btn-success btn-lg btn-block">Buy</button>
+      <div class="col-md-2 col-md-offset-5">
+        <a href="<%= event_path(id: @event.id) %>"><button class="btn btn-primary btn-lg btn-block">Back</button></a>
+      </div>
     </div>
-    <% end %>
   <div>
 </div> 
