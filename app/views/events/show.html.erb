@@ -19,9 +19,7 @@
           <%= fa_icon 'map-marker' %> <%= @event.venue.name %>
         </div>
         <div class="content">
-          <% if @event.ticket_types %>
-            <%= fa_icon 'ticket' %> From <strong><%= number_to_currency(@event.ticket_types.order(:price).first.price, precision: 0, unit: "VND", delimiter: ",", format: "%n %u") %></strong>
-          <% end %>
+            <%= fa_icon 'ticket' %> From <strong><%= number_to_currency(@event.lowest_price_or_default, precision: 0, unit: "VND", delimiter: ",", format: "%n %u") %></strong>
         </div>
         <% unless @event.outdated_event? %>
           <%= link_to 'BOOK NOW', event_tickets_path(@event), class: 'ui red large attached button' %>

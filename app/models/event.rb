@@ -9,6 +9,10 @@ class Event < ActiveRecord::Base
   validates_presence_of :extended_html_description, :venue, :category, :starts_at
   validates_uniqueness_of :name, uniqueness: {scope: [:venue, :starts_at]}
 
+  def lowest_price_or_default
+    ticket_types.any? ? ticket_types.order(:price).first.price : 0
+  end
+
   def total_quantity
     ticket_types.sum { |t| t.max_quantity }
   end
