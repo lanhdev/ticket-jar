@@ -1,0 +1,15 @@
+.ui.two.cards > .card {
+    margin-bottom: 20px;
+    img {
+        max-width: 100%;
+    }
+    &:hover {
+        box-shadow: 0 0 8px $gray;
+        transition: 0.5s;
+    }
+    .header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #9BC53D;
+    }
+}

@@ -1,66 +1,53 @@
-<div class="container-fluid tickets-buy">
-  <div class="row tickets-header">
-    <div class="col-xs-12 col-md-11 col-md-offset-1">
-      <h3> <%= @event.name %> </h3>
-      <div class="pull-left">
-        <%= fa_icon 'map-marker' %>
-      </div>
-      <div class="venue-details">
-       <%= @event.venue.name %>
-       <br/>
-       <%= @event.venue.full_address %>
-      </div>
+<div class="ui container">
+  <h1 class="ui header"><%= @event.name %></h1>
+  <%= fa_icon 'map-marker' %> <%= @event.venue.name %> - <%= @event.venue.full_address %>
+  <br>
+  <%= fa_icon 'clock-o' %> <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %>
+  <div class="ui hidden divider"></div>
 
-      <div class="pull-left">
-        <%= fa_icon 'clock-o' %>
-      </div>
-      <div class="time-details"> 
-        <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12 col-md-offset-1">  
-      <table class="table">
-        <th>Ticket Type</th>
-        <th>Unit Price</th>
-        <th>Remain</th>
-        <th></th>
-
+  <div class="ui grid">
+    <table class="ui basic table">
+      <thead>
+        <tr>
+          <th>Ticket Type</th>
+          <th>Unit Price</th>
+          <th>Remain</th>
+        </tr>
+      </thead>
+      <tbody>
         <% @event.ticket_types.each do |type| %>
           <tr>
             <td><%= type.name %></td>
             <td><%= number_to_currency(type.price, unit: 'VND ', precision: 0) %></td>
             <td><%= type.max_quantity %></td>
             <% if current_user && current_user.id == @event.user_id %>
-              <td><%= link_to 'Delete', event_ticket_path(id: type.id), method: 'delete', data: {confirm: 'Are you sure'}, class: 'btn btn-danger' %></td>
+              <td><%= link_to 'Delete', event_ticket_path(id: type.id), method: 'delete', data: {confirm: 'Are you sure'}, class: 'ui red button' %></td>
             <% end %>
           </tr>
         <% end %> 
-      </table>
-      <% if current_user && current_user.id == @event.user_id %>
-        <%= form_tag nil, method: 'get' do %>
-          <%= hidden_field_tag :event_id, params[:event_id] %>
-          <div class="form-inline">
-            <%= text_field_tag :name, params[:name], placeholder: 'Name', class: 'form-control' %>
-            <%= text_field_tag :price, params[:price], placeholder: 'Price', class: 'form-control' %>
-            <%= text_field_tag :max_quantity, params[:max_quantity], placeholder: 'Quantity', class: 'form-control' %>
-            <%= submit_tag 'Add', class: 'btn btn-warning' %>
+      </tbody>
+    </table>
+
+    <% if current_user && current_user.id == @event.user_id %>
+      <%= form_tag nil, method: 'get' do %>
+        <div class="ui form">
+          <div class="three fields">
+            <%= hidden_field_tag :event_id, params[:event_id] %>
+            <div class="field"><%= text_field_tag :name, params[:name], placeholder: 'Name' %></div>
+            <div class="field"><%= text_field_tag :price, params[:price], placeholder: 'Price' %></div>
+            <div class="field"><%= text_field_tag :max_quantity, params[:max_quantity], placeholder: 'Quantity' %></div>
+            <%= submit_tag 'Add', class: 'ui green button' %>
           </div>
-        <% end %><br>
-      <% else %>
-        <div class="col-md-2 col-md-offset-5">
-          <% if @event.total_quantity == 0 %>
-            <button class="btn btn-lg btn-block disabled">Sold Out</button>
-          <% else %>
-            <a href="<%= new_event_ticket_order_path %>"><button class="btn btn-success btn-lg btn-block">Buy</button></a>
-          <% end %>
         </div>
       <% end %>
-      <div class="col-md-2 col-md-offset-5">
-        <a href="<%= event_path(id: @event.id) %>"><button class="btn btn-primary btn-lg btn-block">Back</button></a>
-      </div>
-    </div>
-  <div>
-</div> 
+    <% else %>
+      <% if @event.total_quantity == 0 %>
+        <button class="ui disabled button">Sold Out</button>
+      <% else %>
+        <a href="<%= new_event_ticket_order_path %>"><button class="ui large red button">Buy</button></a>
+      <% end %>
+    <% end %>
+    <a href="<%= event_path(id: @event.id) %>"><button class="ui large basic button">Back</button></a> 
+  </div>
+
+</div>

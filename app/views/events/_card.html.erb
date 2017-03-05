@@ -1,12 +1,13 @@
-<div class="col-md-6">
-  <%= link_to event_path(event) do %>
-    <div class="card">
-      <img class="card-img-top" src="<%= event.hero_image_url %>">
-      <div class="card-block">
-        <h4 class="card-title"><%= event.name %></h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-      </div>
+<div class="card">
+  <div class="image"><a href="<%= event_path(event) %>"><img src="<%= event.hero_image_url %>" style="max-width: 100%;" ></a></div>
+  <div class="content">
+    <h4 class="header"><%= event.name %></h4>
+    <div class="meta">
+      <span class="date"><%= event.starts_at.strftime("%b %d, %Y") %></span>
     </div>
-  <% end %>
-</div>  
+    <div class="description">
+      <%= fa_icon 'map-marker' %> <span><%= event.venue_name %></span>
+      <span class="ui basic label right floated"><%= event.category.name %></span>
+    </div>
+  </div>
+</div>

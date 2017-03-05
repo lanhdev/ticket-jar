@@ -1,21 +1,21 @@
 <div class="container">
-  <h1>Your booking detail information</span></h1>
-  <div class="row">
-    <div class="col-sm-2">
+  <h1 class="ui header">Your booking detail information</h1>
+  <div class="ui grid">
+    <div class="three wide column">
       <p>Customer:</p>
       <p>Address:</p>
       <p>Phone:</p>
       <p>Time booking:</p>
     </div>
-    <div class="col-sm-4">
+    <div class="five wide column">
       <p><%= @ticket_order.name %></p>
       <p><%= @ticket_order.address %></p>
       <p><%= @ticket_order.phone %></p>
       <p><%= @ticket_order.created_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
     </div>
   </div>
-  <div class="row">
-    <table class="table">
+  <div class="ui grid">
+    <table class="ui basic table">
       <thead>
         <tr>
           <th>Item</th>

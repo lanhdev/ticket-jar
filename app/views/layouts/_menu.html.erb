@@ -1,0 +1,22 @@
+<div class="ui large grey inverted menu">
+  <a class="ui active item" href="<%= root_path %>">A Ticket Jar</a>
+  <div class="ui small item form">
+    <%= form_tag events_path, method: 'get' do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search for events'%>
+      <%= submit_tag 'Search', style: 'display: none;' %>
+    <% end %>
+  </div>
+  <% if current_user %>
+    <a class="ui item" href="<%= new_event_path %>">New</a>
+    <a class="ui item" href="<%= mine_events_path %>">My Events</a>
+    <div class="right menu">
+      <a class="ui active item">Signed in as <%= current_user.name %></a>
+      <a class="ui item" href="<%= sign_out_path %>" data-method='delete'>Sign Out</a>
+    </div>
+  <% else %>
+    <div class="right menu">
+      <a class="ui item" href="<%= new_session_path %>">Sign In</a>
+      <a class="ui item" href="<%= new_user_path %>">Sign Up</a>
+    </div>
+  <% end %>
+</div>

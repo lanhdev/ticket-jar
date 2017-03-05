@@ -1,19 +1,14 @@
-/*
- *= require font-kit-rails/open-sans
-*/
-
+@import "semantic";
 @import "bootstrap";
 @import "font-awesome";
-@import "col-helpers";
-@import "nav";
-@import "events";
-@import "tickets";
+@import "card";
 
 body {
   font-family: 'Helvetica';
+  background-image: url("bg.png");
+  background-repeat: repeat;
 }
 .btn.btn-danger {
   background-color: rgb(216, 87, 66);
   border: 2px solid rgb(241, 112, 91);
 }
-

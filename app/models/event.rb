@@ -17,6 +17,10 @@ class Event < ActiveRecord::Base
     ticket_types.count >= 1
   end
 
+  def outdated_event?
+    starts_at < Time.now
+  end
+
   # def self.published?
   #  where(published_at: nil)
   # end

@@ -1,21 +1,9 @@
-<div class='events-header' style='background-image: url(<%= header_background_image_url %>)'>
-  <div class="container">
-    <h2> Discover upcoming events </h2>
-    <form>
-      <%= form_tag events_path, method: 'get' do %>
-      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search for events, shows, courses...' %>
-      <%= submit_tag 'Search', class: 'btn btn-secondary hidden-xs-up' %>
-      <% end %>
-    </form>
-  </div>
-</div>
-<div class="container-fluid events-list">
-    <% @events.in_groups_of(2) do |g| %>
-      <div class="row">
-        <% g.compact.each do |e| %>
-            <%= render partial: 'card', locals: {event: e} %>
-        <% end %>
-      </div>  
+<%= render 'events/header' %>
+
+<div class="ui container">
+  <div class="ui two cards">  
+    <% @events.each do |e| %>
+      <%= render partial: 'card', locals: {event: e} %>
     <% end %>
   </div>
 </div>
