@@ -36,6 +36,9 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'font-kit-rails', '~> 1.2.0'
 # gem 'rails-assets-semantic', source: 'https://rails-assets.org'
+gem 'omniauth'
+gem 'omniauth-facebook', '~> 3.0.0'
+gem 'figaro'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

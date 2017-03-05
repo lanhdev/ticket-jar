@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :ticket_orders, only: [:new, :create, :show]
   end
   delete 'sign_out' => 'sessions#destroy'
+  get 'auth/:provider/callback' => 'sessions#callback'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

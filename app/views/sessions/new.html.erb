@@ -8,5 +8,6 @@
       <%= password_field_tag :password, nil, placeholder: 'Password' %>
     </div>
     <%= submit_tag 'Sign In', data: {disable_with: 'Signing In...'}, class: 'btn btn-success' %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", class: 'btn btn-primary' %>
   <% end %>
 </div>
