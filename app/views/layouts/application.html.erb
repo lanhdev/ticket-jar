@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Coder Ticket</title>
+  <title>A Ticket Jar</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <nav class="navbar navbar-dark bg-inverse">
-    <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
+    <a class="navbar-brand" href="<%= root_path %>">A Ticket Jar</a>
     <ul class="nav navbar-nav pull-right">
       <% if current_user %>
         <li class="nav-item">
@@ -30,6 +30,7 @@
       <% end %>
     </ul>
   </nav>
+  <%= flash_messages %>
   <%= yield %>
 </body>
 </html>

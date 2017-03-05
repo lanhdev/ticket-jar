@@ -7,11 +7,9 @@ RSpec.describe EventsController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    # it 'load events' do
-    #   event = Event.new
-    #   event.save(validate: false)
-    #   get :index
-    #   get(assigns(:events)).to eq [event]
-    # end
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template("index")
+    end
   end
 end

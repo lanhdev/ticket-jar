@@ -50,6 +50,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+  gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'simplecov', '~> 0.12.0', require: false
   gem 'guard-rspec', require: false

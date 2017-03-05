@@ -3,7 +3,7 @@
 
   <%= form_for @user do |f| %>
     <% if @user.errors.any? %>
-      <%= @user.errors.full_messages.to_sentence %>
+      <div class="alert alert-warning"><%= @user.errors.full_messages.to_sentence %></div> 
     <% end %>
     <div class="field">
       <%= f.label :name %>

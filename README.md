@@ -4,7 +4,7 @@
 
 - Submitted by: **Lanh Hoang**
 - Time spent: **30** hours
-- URL: **Insert your Heroku URL here**
+- URL: **https://aticketjar.herokuapp.com**
 - SimpleCov Test Coverage: [coverage/index.html](coverage/index.html)
 
 ## User Stories
@@ -12,7 +12,10 @@
 The following **required** functionality is complete:
 
 * [x] Implement required user stories
-* [ ] 10 model tests, 2 route tests, 2 controller tests, 2 view tests.
+* [x] 10 model tests
+* [x] 2 route tests
+* [x] 2 controller tests
+* [x] 2 view tests.
 
 The person with best test coverage will win a small present from the instructor :)
 

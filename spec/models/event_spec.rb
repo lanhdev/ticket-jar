@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  pending "test past events"
-
   describe '.upcoming' do
     it 'returns [] when there is no event' do
       expect(Event.upcoming).to eq []
@@ -31,10 +29,27 @@ RSpec.describe Event, type: :model do
       event = Event.new
       expect(event.venue_name).to eq nil
     end
+    
     it "returns venue name" do
       venue = Venue.new name: "GEM Center"
       event = Event.new venue: venue
       expect(event.venue_name).to eq "GEM Center"
+    end
+  end
+
+  describe ".published" do
+    it "returns [] when event is not published" do
+      event = Event.new published_at: nil
+      event.save(validate: false)
+      expect(Event.published).to eq []
+    end
+
+    it "returns published event" do
+      event_1 = Event.new published_at: nil
+      event_2 = Event.new published_at: Time.now
+      event_1.save(validate: false)
+      event_2.save(validate: false)
+      expect(Event.published).to eq [event_2]
     end
   end
 end
