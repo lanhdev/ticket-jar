@@ -3,7 +3,7 @@
 **CoderTicket** is a Ruby on Rails application that allows users to create and buy tickets to cool events.
 
 - Submitted by: **Lanh Hoang**
-- Time spent: **32** hours
+- Time spent: **40** hours
 - URL: **https://aticketjar.herokuapp.com**
 - SimpleCov Test Coverage: [coverage/index.html](coverage/index.html)
 
