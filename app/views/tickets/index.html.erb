@@ -44,10 +44,10 @@
       <% if @event.total_quantity == 0 %>
         <button class="ui disabled button">Sold Out</button>
       <% else %>
-        <a href="<%= new_event_ticket_order_path %>"><button class="ui large red button">Buy</button></a>
+        <a href="<%= new_event_ticket_order_path %>"><button class="ui large red right floated button">Buy</button></a>
       <% end %>
     <% end %>
-    <a href="<%= event_path(id: @event.id) %>"><button class="ui large basic button">Back</button></a> 
+    <a href="<%= event_path(id: @event.id) %>"><button class="ui large basic right floated button">Back</button></a> 
   </div>
 
 </div>
