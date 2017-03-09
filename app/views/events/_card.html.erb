@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="image"><a href="<%= event_path(event) %>"><img src="<%= event.hero_image_url %>" style="max-width: 100%;" ></a></div>
+  <a href="<%= event_path(event) %>"><div class="custom_thumbnail" style="background-image: url(<%= event.hero_image_url %>)"></div></a>
   <div class="content">
     <h4 class="header"><%= event.name %></h4>
     <div class="meta">
